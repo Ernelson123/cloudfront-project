@@ -1,0 +1,16 @@
+# Secrets & credentials
+.env
+*.pem
+*.key
+aws-credentials
+credentials
+
+# Go build artifacts
+infra-check
+tools/infra-check/infra-check
+*.exe
+
+# OS / editor noise
+.DS_Store
+.idea/
+.vscode/
