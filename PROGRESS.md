@@ -36,3 +36,9 @@
 ## 🚧 Up Next: Phase 4
 - Configure Route 53 DNS records (A, AAAA, CAA).
 - Begin building the `infra-check dns` Go command to programmatically verify DNS resolution.
+
+## ✅ Phase 4: DNS, the internet’s phone book
+- [x] Added CAA record (`0 issue "amazon.com"`) to Route 53 to restrict certificate issuance to AWS.
+- [x] Built and tested `tools/infra-check/dns.go` to programmatically verify NS and A records.
+- [x] Fixed Go module structure (moved `go.mod` to project root).
+- **Checkpoint Passed:** `go run ./tools/infra-check dns dodon.me` successfully returns the 4 AWS nameservers.
