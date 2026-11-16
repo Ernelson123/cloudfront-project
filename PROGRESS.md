@@ -42,3 +42,10 @@
 - [x] Built and tested `tools/infra-check/dns.go` to programmatically verify NS and A records.
 - [x] Fixed Go module structure (moved `go.mod` to project root).
 - **Checkpoint Passed:** `go run ./tools/infra-check dns dodon.me` successfully returns the 4 AWS nameservers.
+
+## ✅ Phase 5: HTTPS, Certificates, and Trust
+- [x] Requested free public ACM certificate in `us-east-1` for `dodon.me` and `www.dodon.me`.
+- [x] Validated certificate via DNS (auto-created CNAME records in Route 53).
+- [x] Certificate status is now **Issued**.
+- [x] Built `tools/infra-check/tlscheck.go` to programmatically verify TLS version, cipher suite, and certificate expiry.
+- **Checkpoint Passed:** Tool correctly identifies that `dodon.me` has no A record yet (expected), and successfully validates TLS on known domains like `google.com`.
