@@ -49,3 +49,12 @@
 - [x] Certificate status is now **Issued**.
 - [x] Built `tools/infra-check/tlscheck.go` to programmatically verify TLS version, cipher suite, and certificate expiry.
 - **Checkpoint Passed:** Tool correctly identifies that `dodon.me` has no A record yet (expected), and successfully validates TLS on known domains like `google.com`.
+
+## ✅ Phase 6: The CDN (CloudFront)
+- [x] Created CloudFront distribution with S3 as the origin.
+- [x] Configured Origin Access Control (OAC) to securely grant CloudFront read access.
+- [x] Updated S3 Bucket Policy to allow only this specific CloudFront distribution.
+- [x] Set Default Root Object to `index.html` and configured custom 404 error response.
+- [x] Attached ACM SSL certificate and added Alternate Domain Names (`dodon.me`, `www.dodon.me`).
+- [x] Set Price Class to "North America and Europe" to protect the €5 budget.
+- **Checkpoint Passed:** `curl -I` returns `HTTP/2 200`, `x-cache: Miss/Hit`, and confirms S3 encryption/versioning headers.
