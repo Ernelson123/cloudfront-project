@@ -58,3 +58,10 @@
 - [x] Attached ACM SSL certificate and added Alternate Domain Names (`dodon.me`, `www.dodon.me`).
 - [x] Set Price Class to "North America and Europe" to protect the €5 budget.
 - **Checkpoint Passed:** `curl -I` returns `HTTP/2 200`, `x-cache: Miss/Hit`, and confirms S3 encryption/versioning headers.
+
+## ✅ Phase 7: Connect everything and harden security
+- [x] Route 53 A + AAAA ALIAS records for dodon.me and www.dodon.me -> CloudFront.
+- [x] CloudFront Function (JS) cleanly redirects www -> apex (301) without querystring artifacts.
+- [x] Response Headers Policy: HSTS, CSP (no inline scripts), nosniff, X-Frame-Options, Referrer-Policy.
+- [x] DNSSEC intentionally OFF (~$20/mo would break the €5 budget).
+- **Checkpoint:** Go tls tool validates dodon.me with TLS 1.3. www correctly 301s to apex with clean URL. Security headers verified.
