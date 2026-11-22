@@ -72,3 +72,14 @@
 - [x] `infra-check` CLI is now a complete, multi-command validation tool for the entire architecture.
 - [x] External validation: securityheaders.com grade = A/A+.
 - **Checkpoint:** Full end-to-end verification of DNS, TLS, CDN caching, and security headers via custom Go tooling.
+
+## 🌟 Bonus: securityheaders.com A -> A+
+- [x] Added Permissions-Policy custom header to response headers policy (disables camera/mic/geo/pay/usb/sensors).
+- **Result:** Independent scan = A+; all 6 scored headers green.
+
+## ✅ Phase 9: CI/CD Automation (GitHub Actions)
+- [x] Created `.github/workflows/deploy.yml` to trigger deployments on pushes to `main`.
+- [x] Configured AWS IAM OIDC Identity Provider for GitHub (`token.actions.githubusercontent.com`).
+- [x] Created IAM Role (`GitHubActionsDeployRole`) with a strict trust policy limiting access to `repo:Ernelson123/cloudfront-project:*`.
+- [x] Attached a least-privilege IAM Policy granting only `s3:PutObject`, `s3:DeleteObject`, and `s3:ListBucket` on `dodon-me-website`.
+- [x] **Checkpoint Passed:** Pushing a change to `site/index.html` automatically triggered the GitHub Action, which securely assumed the IAM role via OIDC (no hardcoded AWS secrets) and synced the files to S3.
