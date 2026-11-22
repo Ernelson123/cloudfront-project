@@ -65,3 +65,10 @@
 - [x] Response Headers Policy: HSTS, CSP (no inline scripts), nosniff, X-Frame-Options, Referrer-Policy.
 - [x] DNSSEC intentionally OFF (~$20/mo would break the €5 budget).
 - **Checkpoint:** Go tls tool validates dodon.me with TLS 1.3. www correctly 301s to apex with clean URL. Security headers verified.
+
+## ✅ Phase 8: Automation & Caching (Grand Finale)
+- [x] Built `tools/infra-check/cache.go` to programmatically verify CloudFront `X-Cache` (Hit/Miss/RefreshHit) behavior.
+- [x] Built `tools/infra-check/headers.go` to validate the presence of HSTS, CSP, X-Frame-Options, and more.
+- [x] `infra-check` CLI is now a complete, multi-command validation tool for the entire architecture.
+- [x] External validation: securityheaders.com grade = A/A+.
+- **Checkpoint:** Full end-to-end verification of DNS, TLS, CDN caching, and security headers via custom Go tooling.
