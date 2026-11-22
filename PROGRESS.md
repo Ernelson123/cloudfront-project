@@ -77,9 +77,12 @@
 - [x] Added Permissions-Policy custom header to response headers policy (disables camera/mic/geo/pay/usb/sensors).
 - **Result:** Independent scan = A+; all 6 scored headers green.
 
-## ✅ Phase 9: CI/CD Automation (GitHub Actions)
-- [x] Created `.github/workflows/deploy.yml` to trigger deployments on pushes to `main`.
-- [x] Configured AWS IAM OIDC Identity Provider for GitHub (`token.actions.githubusercontent.com`).
-- [x] Created IAM Role (`GitHubActionsDeployRole`) with a strict trust policy limiting access to `repo:Ernelson123/cloudfront-project:*`.
-- [x] Attached a least-privilege IAM Policy granting only `s3:PutObject`, `s3:DeleteObject`, and `s3:ListBucket` on `dodon-me-website`.
-- [x] **Checkpoint Passed:** Pushing a change to `site/index.html` automatically triggered the GitHub Action, which securely assumed the IAM role via OIDC (no hardcoded AWS secrets) and synced the files to S3.
+## ✅ Phase 9: CI/CD Automation (GitHub Actions + OIDC)
+- [x] `.github/workflows/deploy.yml` triggers on push to main.
+- [x] AWS IAM OIDC provider `token.actions.githubusercontent.com` (audience sts.amazonaws.com).
+- [x] Role `GitHubActionsDeployRole` with repo-scoped trust policy + S3-only inline policy.
+- [x] Debugged `AccessDenied` via CloudTrail: GitHub embeds numeric owner/repo IDs in the sub
+      claim (`repo:Ernelson123@<id>/cloudfront-project@<id>:ref:refs/heads/main`); corrected the
+      StringLike condition to match.
+- [x] **Checkpoint:** git push -> Actions run -> green in 13s -> S3 synced -> site live.
+- [ ] (Optional) Bump action versions to silence Node.js 20 deprecation warning.
