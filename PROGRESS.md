@@ -80,6 +80,6 @@
 ## ✅ Phase 9: CI/CD Automation (GitHub Actions)
 - [x] Created `.github/workflows/deploy.yml` to trigger deployments on pushes to `main`.
 - [x] Configured AWS IAM OIDC Identity Provider for GitHub (`token.actions.githubusercontent.com`).
-- [x] Created IAM Role (`GitHubActionsDeployRole`) with a strict trust policy limiting access to `repo:Ernelson123/cloudfront-project:*`.
+- [x] Created IAM Role (`GitHubActionsDeployRole`) with a strict trust policy limiting access to pushes to `main` from `repo:Ernelson123/cloudfront-project`.
 - [x] Attached a least-privilege IAM Policy granting only `s3:PutObject`, `s3:DeleteObject`, and `s3:ListBucket` on `dodon-me-website`.
 - [x] **Checkpoint Passed:** Pushing a change to `site/index.html` automatically triggered the GitHub Action, which securely assumed the IAM role via OIDC (no hardcoded AWS secrets) and synced the files to S3.
