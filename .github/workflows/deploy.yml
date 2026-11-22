@@ -1,0 +1,30 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Static Site
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Required for OIDC authentication
+      contents: read  # Required to checkout the code
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::948285517901:role/GitHubActionsDeployRole
+          aws-region: eu-north-1
+
+      - name: Sync files to S3
+        run: |
+          echo "🚀 Syncing site/ to S3..."
+          aws s3 sync ./site/ s3://dodon-me-website/ --delete
+          echo "✅ Deployment complete!"
